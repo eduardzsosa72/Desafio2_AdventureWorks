@@ -6,22 +6,16 @@
     <Name>ProyectoMultidimensional1.database</Name>
     <FullPath>ProyectoMultidimensional1.database</FullPath>
   </Database>
-  <DataSources>
-    <ProjectItem>
-      <Name>AdventureWorksDW2022.ds</Name>
-      <FullPath>AdventureWorksDW2022.ds</FullPath>
-    </ProjectItem>
-  </DataSources>
-  <DataSourceViews>
-    <ProjectItem>
-      <Name>AdventureWorksDW2022.dsv</Name>
-      <FullPath>AdventureWorksDW2022.dsv</FullPath>
-    </ProjectItem>
-  </DataSourceViews>
   <Cubes>
     <ProjectItem>
       <Name>VentasAdventureWorks.cube</Name>
       <FullPath>VentasAdventureWorks.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>VentasAdventureWorks.partitions</Name>
+          <FullPath>VentasAdventureWorks.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
     </ProjectItem>
   </Cubes>
   <Dimensions>
@@ -42,10 +36,37 @@
       <FullPath>DimCustomer.dim</FullPath>
     </ProjectItem>
   </Dimensions>
+  <DataSources>
+    <ProjectItem>
+      <Name>AdventureWorksDW2022.ds</Name>
+      <FullPath>AdventureWorksDW2022.ds</FullPath>
+    </ProjectItem>
+  </DataSources>
+  <DataSourceViews>
+    <ProjectItem>
+      <Name>AdventureWorksDW2022.dsv</Name>
+      <FullPath>AdventureWorksDW2022.dsv</FullPath>
+    </ProjectItem>
+  </DataSourceViews>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
-      <Options />
+      <Options>
+        <ConnectionMappings>
+          <ConfigurationSetting>
+            <Id>AdventureWorksDW2022</Id>
+            <Name>AdventureWorksDW2022</Name>
+            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL;Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AdventureWorksDW2022;Integrated Security=SSPI;Persist Security Info=False</Value>
+          </ConfigurationSetting>
+        </ConnectionMappings>
+        <ConnectionSecurityMappings>
+          <ConfigurationSetting>
+            <Id>AdventureWorksDW2022</Id>
+            <Name>AdventureWorksDW2022</Name>
+            <Value xsi:type="xsd:int">0</Value>
+          </ConfigurationSetting>
+        </ConnectionSecurityMappings>
+      </Options>
     </Configuration>
   </Configurations>
 </Project>

@@ -6,7 +6,7 @@ bin/
 obj/
 *.bak
 *.tmp
-
+documentacion/
 # Power BI temp files
 *.pbix.lock
 
