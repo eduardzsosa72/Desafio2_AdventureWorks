@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="AdventureWorksDW2022" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>AdventureWorksDW2022</ID>
+  <Name>AdventureWorksDW2022</Name>
+  <DataSourceID>AdventureWorksDW2022</DataSourceID>
+  <Schema>
+    <xs:schema id="AdventureWorksDW2022" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="AdventureWorksDW2022" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+
+            <!-- FactInternetSales -->
+            <xs:element name="FactInternetSales" msprop:DbTableName="FactInternetSales" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ProductKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="OrderDateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="DueDateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="ShipDateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="CustomerKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="SalesTerritoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="SalesOrderNumber" type="xs:string" minOccurs="0" />
+                  <xs:element name="SalesOrderLineNumber" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="RevisionNumber" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="OrderQuantity" type="xs:short" minOccurs="0" />
+                  <xs:element name="UnitPrice" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="ExtendedAmount" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="UnitPriceDiscountPct" type="xs:float" minOccurs="0" />
+                  <xs:element name="DiscountAmount" type="xs:float" minOccurs="0" />
+                  <xs:element name="ProductStandardCost" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TotalProductCost" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SalesAmount" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TaxAmt" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Freight" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- FactResellerSales -->
+            <xs:element name="FactResellerSales" msprop:DbTableName="FactResellerSales" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ProductKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="OrderDateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="DueDateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="ShipDateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="ResellerKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="EmployeeKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="SalesTerritoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="SalesOrderNumber" type="xs:string" minOccurs="0" />
+                  <xs:element name="SalesOrderLineNumber" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="RevisionNumber" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="OrderQuantity" type="xs:short" minOccurs="0" />
+                  <xs:element name="UnitPrice" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="ExtendedAmount" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="UnitPriceDiscountPct" type="xs:float" minOccurs="0" />
+                  <xs:element name="DiscountAmount" type="xs:float" minOccurs="0" />
+                  <xs:element name="ProductStandardCost" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TotalProductCost" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SalesAmount" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TaxAmt" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Freight" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimDate -->
+            <xs:element name="DimDate" msprop:DbTableName="DimDate" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="FullDateAlternateKey" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="DayNumberOfWeek" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="EnglishDayNameOfWeek" type="xs:string" minOccurs="0" />
+                  <xs:element name="DayNumberOfMonth" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="DayNumberOfYear" type="xs:short" minOccurs="0" />
+                  <xs:element name="WeekNumberOfYear" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="EnglishMonthName" type="xs:string" minOccurs="0" />
+                  <xs:element name="MonthNumberOfYear" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="CalendarQuarter" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="CalendarYear" type="xs:short" minOccurs="0" />
+                  <xs:element name="CalendarSemester" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="FiscalQuarter" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="FiscalYear" type="xs:short" minOccurs="0" />
+                  <xs:element name="FiscalSemester" type="xs:unsignedByte" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimProduct -->
+            <xs:element name="DimProduct" msprop:DbTableName="DimProduct" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ProductKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="ProductAlternateKey" type="xs:string" minOccurs="0" />
+                  <xs:element name="ProductSubcategoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="EnglishProductName" type="xs:string" minOccurs="0" />
+                  <xs:element name="StandardCost" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="ListPrice" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="ModelName" type="xs:string" minOccurs="0" />
+                  <xs:element name="EnglishDescription" type="xs:string" minOccurs="0" />
+                  <xs:element name="Status" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimProductSubcategory -->
+            <xs:element name="DimProductSubcategory" msprop:DbTableName="DimProductSubcategory" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ProductSubcategoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="ProductCategoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="EnglishProductSubcategoryName" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimProductCategory -->
+            <xs:element name="DimProductCategory" msprop:DbTableName="DimProductCategory" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ProductCategoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="EnglishProductCategoryName" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimSalesTerritory -->
+            <xs:element name="DimSalesTerritory" msprop:DbTableName="DimSalesTerritory" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SalesTerritoryKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="SalesTerritoryAlternateKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="SalesTerritoryRegion" type="xs:string" minOccurs="0" />
+                  <xs:element name="SalesTerritoryCountry" type="xs:string" minOccurs="0" />
+                  <xs:element name="SalesTerritoryGroup" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimCustomer -->
+            <xs:element name="DimCustomer" msprop:DbTableName="DimCustomer" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="CustomerKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="GeographyKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="CustomerAlternateKey" type="xs:string" minOccurs="0" />
+                  <xs:element name="FirstName" type="xs:string" minOccurs="0" />
+                  <xs:element name="LastName" type="xs:string" minOccurs="0" />
+                  <xs:element name="EnglishEducation" type="xs:string" minOccurs="0" />
+                  <xs:element name="EnglishOccupation" type="xs:string" minOccurs="0" />
+                  <xs:element name="YearlyIncome" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TotalChildren" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="Gender" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+            <!-- DimReseller -->
+            <xs:element name="DimReseller" msprop:DbTableName="DimReseller" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ResellerKey" type="xs:integer" minOccurs="0" />
+                  <xs:element name="ResellerAlternateKey" type="xs:string" minOccurs="0" />
+                  <xs:element name="BusinessType" type="xs:string" minOccurs="0" />
+                  <xs:element name="ResellerName" type="xs:string" minOccurs="0" />
+                  <xs:element name="NumberEmployees" type="xs:integer" minOccurs="0" />
+                  <xs:element name="AnnualSales" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+          </xs:choice>
+        </xs:complexType>
+
+        <!-- Primary Keys -->
+        <xs:unique name="PK_FactInternetSales" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//FactInternetSales" />
+          <xs:field xpath="SalesOrderNumber" />
+          <xs:field xpath="SalesOrderLineNumber" />
+        </xs:unique>
+        <xs:unique name="PK_FactResellerSales" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//FactResellerSales" />
+          <xs:field xpath="SalesOrderNumber" />
+          <xs:field xpath="SalesOrderLineNumber" />
+        </xs:unique>
+        <xs:unique name="PK_DimDate" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimDate" />
+          <xs:field xpath="DateKey" />
+        </xs:unique>
+        <xs:unique name="PK_DimProduct" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimProduct" />
+          <xs:field xpath="ProductKey" />
+        </xs:unique>
+        <xs:unique name="PK_DimProductSubcategory" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimProductSubcategory" />
+          <xs:field xpath="ProductSubcategoryKey" />
+        </xs:unique>
+        <xs:unique name="PK_DimProductCategory" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimProductCategory" />
+          <xs:field xpath="ProductCategoryKey" />
+        </xs:unique>
+        <xs:unique name="PK_DimSalesTerritory" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimSalesTerritory" />
+          <xs:field xpath="SalesTerritoryKey" />
+        </xs:unique>
+        <xs:unique name="PK_DimCustomer" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimCustomer" />
+          <xs:field xpath="CustomerKey" />
+        </xs:unique>
+        <xs:unique name="PK_DimReseller" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimReseller" />
+          <xs:field xpath="ResellerKey" />
+        </xs:unique>
+
+        <!-- Relationships: FactInternetSales -->
+        <xs:keyref name="FK_FIS_DimDate" refer="PK_DimDate">
+          <xs:selector xpath=".//FactInternetSales" />
+          <xs:field xpath="OrderDateKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FIS_DimProduct" refer="PK_DimProduct">
+          <xs:selector xpath=".//FactInternetSales" />
+          <xs:field xpath="ProductKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FIS_DimCustomer" refer="PK_DimCustomer">
+          <xs:selector xpath=".//FactInternetSales" />
+          <xs:field xpath="CustomerKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FIS_DimSalesTerritory" refer="PK_DimSalesTerritory">
+          <xs:selector xpath=".//FactInternetSales" />
+          <xs:field xpath="SalesTerritoryKey" />
+        </xs:keyref>
+
+        <!-- Relationships: FactResellerSales -->
+        <xs:keyref name="FK_FRS_DimDate" refer="PK_DimDate">
+          <xs:selector xpath=".//FactResellerSales" />
+          <xs:field xpath="OrderDateKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FRS_DimProduct" refer="PK_DimProduct">
+          <xs:selector xpath=".//FactResellerSales" />
+          <xs:field xpath="ProductKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FRS_DimReseller" refer="PK_DimReseller">
+          <xs:selector xpath=".//FactResellerSales" />
+          <xs:field xpath="ResellerKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FRS_DimSalesTerritory" refer="PK_DimSalesTerritory">
+          <xs:selector xpath=".//FactResellerSales" />
+          <xs:field xpath="SalesTerritoryKey" />
+        </xs:keyref>
+
+        <!-- Product hierarchy -->
+        <xs:keyref name="FK_DimProduct_DimProductSubcategory" refer="PK_DimProductSubcategory">
+          <xs:selector xpath=".//DimProduct" />
+          <xs:field xpath="ProductSubcategoryKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_DimProductSubcategory_DimProductCategory" refer="PK_DimProductCategory">
+          <xs:selector xpath=".//DimProductSubcategory" />
+          <xs:field xpath="ProductCategoryKey" />
+        </xs:keyref>
+
+      </xs:element>
+    </xs:schema>
+  </Schema>
+</DataSourceView>

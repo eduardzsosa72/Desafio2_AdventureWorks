@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="DimCustomer" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DimCustomer</ID>
+  <Name>Cliente</Name>
+  <DataSourceViewID>AdventureWorksDW2022</DataSourceViewID>
+  <Attributes>
+    <Attribute>
+      <ID>CustomerKey</ID>
+      <Name>Clave Cliente</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimCustomer</TableID>
+            <ColumnID>CustomerKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimCustomer</TableID>
+          <ColumnID>FirstName</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+    <Attribute>
+      <ID>Educacion</ID>
+      <Name>Educación</Name>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>WChar</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimCustomer</TableID>
+            <ColumnID>EnglishEducation</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimCustomer</TableID>
+          <ColumnID>EnglishEducation</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+    <Attribute>
+      <ID>Ocupacion</ID>
+      <Name>Ocupación</Name>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>WChar</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimCustomer</TableID>
+            <ColumnID>EnglishOccupation</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimCustomer</TableID>
+          <ColumnID>EnglishOccupation</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+    <Attribute>
+      <ID>Genero</ID>
+      <Name>Género</Name>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>WChar</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimCustomer</TableID>
+            <ColumnID>Gender</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimCustomer</TableID>
+          <ColumnID>Gender</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+  </Attributes>
+</Dimension>

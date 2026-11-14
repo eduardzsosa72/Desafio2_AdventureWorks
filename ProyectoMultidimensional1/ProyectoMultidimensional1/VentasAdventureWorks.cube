@@ -1,0 +1,301 @@
+<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="8f3819c9-6928-4afb-a882-69a79f911919" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>VentasAdventureWorks</ID>
+  <Name>Ventas Adventure Works</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="625a40c4-b1e1-4bc5-9b14-e0dd2dc5a436">
+      <ID>DimDate</ID>
+      <Name>Fecha</Name>
+      <DimensionID>DimDate</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7c0f808c-17a1-4744-8d02-fbbe14616830">
+          <AttributeID>DateKey</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="74dacdf3-592e-4205-a29c-ef09b8b6f94b">
+          <AttributeID>Anio</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d8ade5c6-31f0-4f03-ae0c-7afbab9f8cea">
+          <AttributeID>Trimestre</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2587ed0a-c0ef-4c16-9bc4-d6ae07ad0204">
+          <AttributeID>Mes</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="622b7406-5e2b-4688-882b-93257dc6ff6a">
+          <AttributeID>Semestre</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="21775d47-ee5d-4b35-8224-7c55f966f4b6">
+          <HierarchyID>Jerarquia Calendario</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="df282fb0-0228-431e-9fc7-fa5b95b6ce56">
+      <ID>DimProduct</ID>
+      <Name>Producto</Name>
+      <DimensionID>DimProduct</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="43bedda9-5656-4c1e-af53-0666e9018a20">
+          <AttributeID>ProductKey</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9f2a5a85-914f-42f0-91f4-476b442dbcac">
+          <AttributeID>Producto</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2961fd6f-7fd6-4227-87f0-aafe4a75a3d5">
+          <AttributeID>Subcategoria</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="991048c8-06f2-4475-9047-43ce5ba1d46e">
+          <AttributeID>Categoria</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="999d6d9c-8eab-4311-9236-2ffd313a2782">
+          <AttributeID>Modelo</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="34a3b73c-d09d-4e95-88fa-04cdc062ece5">
+          <HierarchyID>Jerarquia Producto</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="06cac82a-4f1b-4140-96fa-98805a45b2d3">
+      <ID>DimSalesTerritory</ID>
+      <Name>Territorio de Ventas</Name>
+      <DimensionID>DimSalesTerritory</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="52bc86d6-2d23-4173-a2c3-776eda4c6e93">
+          <AttributeID>SalesTerritoryKey</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="896f66e9-4cff-43c3-b49e-afad8a7a2f28">
+          <AttributeID>Region</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2094f773-e8cd-4484-aa6f-416a193b62fa">
+          <AttributeID>Pais</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fa203ef0-b99a-4c70-a454-d19883674338">
+          <AttributeID>Grupo</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="3fe8728c-d8e6-45ca-ab55-544c2fea8c86">
+          <HierarchyID>Jerarquia Territorio</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="21f204c4-bc00-4b5f-8a52-964d021e950a">
+      <ID>DimCustomer</ID>
+      <Name>Cliente</Name>
+      <DimensionID>DimCustomer</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="92e7fa64-e371-4e35-bd77-60d3106b7093">
+          <AttributeID>CustomerKey</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3f5f3b08-6562-420d-bf59-101eb2b5d934">
+          <AttributeID>Educacion</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a79d8407-5bc3-4874-b2cb-37eec13b3537">
+          <AttributeID>Ocupacion</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="36cb1a4a-a81a-42e5-ace4-1c5d750c5b07">
+          <AttributeID>Genero</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <DefaultMeasure>Ventas Internet</DefaultMeasure>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="c4d41738-489a-4634-a93e-20ed90e012af">
+      <ID>Ventas Internet</ID>
+      <Name>Ventas Internet</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="81f4a5e3-27a4-482f-b608-7a91fe0a24f4">
+          <ID>Ventas Internet SalesAmount</ID>
+          <Name>Ventas Internet</Name>
+          <Source dwd:design-time-name="72cf7c86-cb3a-4c24-aa27-76b50e9af56a">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="500fd5f1-63be-42c6-9747-dfc2b2362e01">
+              <TableID>FactInternetSales</TableID>
+              <ColumnID>SalesAmount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="ba454902-66fd-4433-9f24-8e46418e5762">
+          <ID>Costo Internet</ID>
+          <Name>Costo Producto Internet</Name>
+          <Source dwd:design-time-name="8051564a-6b4d-4a53-b007-035b31300359">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="69c8adb2-6e79-451d-be7a-80280e8f786e">
+              <TableID>FactInternetSales</TableID>
+              <ColumnID>TotalProductCost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="905f5880-4495-4d3a-8348-1b242229451a">
+          <ID>Unidades Internet</ID>
+          <Name>Unidades Vendidas Internet</Name>
+          <Source dwd:design-time-name="fab4459f-31ae-4ab1-8aab-75d994cd5048">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="2a55c174-d4e3-4add-9975-af1c89e70b8e">
+              <TableID>FactInternetSales</TableID>
+              <ColumnID>OrderQuantity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Partitions>
+        <Partition dwd:design-time-name="13eac7c3-553b-42fd-a4d5-211114f59b04">
+          <ID>Ventas Internet Part</ID>
+          <Name>Ventas Internet</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="TableBinding" dwd:design-time-name="a6644183-2b33-42e5-bb4f-24bf1fb45c1c" />
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup dwd:design-time-name="ee9d3024-b603-40ca-8cf8-8aa8b98c750a">
+      <ID>Ventas Reseller</ID>
+      <Name>Ventas Reseller</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="21457bba-7f80-4bd0-bdd3-70cdf495d174">
+          <ID>Ventas Reseller SalesAmount</ID>
+          <Name>Ventas Reseller</Name>
+          <Source dwd:design-time-name="0bf981af-ffbb-43bf-8860-933a497a52b0">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="0cf8177a-4948-48c0-b846-96ae7ed1ea36">
+              <TableID>FactResellerSales</TableID>
+              <ColumnID>SalesAmount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="bc042d56-3651-4e2d-a270-797a65e53213">
+          <ID>Costo Reseller</ID>
+          <Name>Costo Producto Reseller</Name>
+          <Source dwd:design-time-name="83abf2ed-611a-4d48-a12d-4c59fb1acdf0">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="8adc7191-8884-4457-a6bc-63aba8fcc6a7">
+              <TableID>FactResellerSales</TableID>
+              <ColumnID>TotalProductCost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="91b07afe-f09f-46b6-93e5-acefe3b5757e">
+          <ID>Unidades Reseller</ID>
+          <Name>Unidades Vendidas Reseller</Name>
+          <Source dwd:design-time-name="cd84c8bc-0cb3-4793-8026-cb35c10b6eb6">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="cdd90d37-1d09-4bda-af5a-f395051ffeb9">
+              <TableID>FactResellerSales</TableID>
+              <ColumnID>OrderQuantity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Partitions>
+        <Partition dwd:design-time-name="7c4a3709-0b33-4574-bd86-cf2488306fec">
+          <ID>Ventas Reseller Part</ID>
+          <Name>Ventas Reseller</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="TableBinding" dwd:design-time-name="bb77ab69-9fcb-4dde-9a2b-bbcc56703abf" />
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="6b025747-edb6-4b8c-8dcf-d4172ef6a274">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>CALCULATE;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Ganancia Internet]
+AS [Measures].[Ventas Internet] - [Measures].[Costo Producto Internet],
+FORMAT_STRING = "Currency", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Ganancia Reseller]
+AS [Measures].[Ventas Reseller] - [Measures].[Costo Producto Reseller],
+FORMAT_STRING = "Currency", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Ganancia Total]
+AS [Measures].[Ganancia Internet] + [Measures].[Ganancia Reseller],
+FORMAT_STRING = "Currency", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Margen Internet Pct]
+AS IIF([Measures].[Ventas Internet] = 0, NULL,
+   ([Measures].[Ganancia Internet] / [Measures].[Ventas Internet]) * 100),
+FORMAT_STRING = "#0.00", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Margen Reseller Pct]
+AS IIF([Measures].[Ventas Reseller] = 0, NULL,
+   ([Measures].[Ganancia Reseller] / [Measures].[Ventas Reseller]) * 100),
+FORMAT_STRING = "#0.00", VISIBLE = 1;
+</Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
+</Cube>

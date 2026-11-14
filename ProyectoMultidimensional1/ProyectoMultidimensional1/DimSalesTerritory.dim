@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="DimSalesTerritory" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DimSalesTerritory</ID>
+  <Name>Territorio de Ventas</Name>
+  <DataSourceViewID>AdventureWorksDW2022</DataSourceViewID>
+  <Attributes>
+    <Attribute>
+      <ID>SalesTerritoryKey</ID>
+      <Name>Clave Territorio</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimSalesTerritory</TableID>
+            <ColumnID>SalesTerritoryKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimSalesTerritory</TableID>
+          <ColumnID>SalesTerritoryRegion</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+    <Attribute>
+      <ID>Region</ID>
+      <Name>Región</Name>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>WChar</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimSalesTerritory</TableID>
+            <ColumnID>SalesTerritoryRegion</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimSalesTerritory</TableID>
+          <ColumnID>SalesTerritoryRegion</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+    <Attribute>
+      <ID>Pais</ID>
+      <Name>País</Name>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>WChar</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimSalesTerritory</TableID>
+            <ColumnID>SalesTerritoryCountry</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimSalesTerritory</TableID>
+          <ColumnID>SalesTerritoryCountry</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+    <Attribute>
+      <ID>Grupo</ID>
+      <Name>Grupo Regional</Name>
+      <KeyColumns>
+        <KeyColumn>
+          <DataType>WChar</DataType>
+          <Source xsi:type="ColumnBinding">
+            <TableID>DimSalesTerritory</TableID>
+            <ColumnID>SalesTerritoryGroup</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn>
+        <DataType>WChar</DataType>
+        <Source xsi:type="ColumnBinding">
+          <TableID>DimSalesTerritory</TableID>
+          <ColumnID>SalesTerritoryGroup</ColumnID>
+        </Source>
+      </NameColumn>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy>
+      <ID>Jerarquia Territorio</ID>
+      <Name>Geografía</Name>
+      <Levels>
+        <Level>
+          <ID>Grupo</ID>
+          <Name>Grupo Regional</Name>
+          <SourceAttributeID>Grupo</SourceAttributeID>
+        </Level>
+        <Level>
+          <ID>Pais</ID>
+          <Name>País</Name>
+          <SourceAttributeID>Pais</SourceAttributeID>
+        </Level>
+        <Level>
+          <ID>Region</ID>
+          <Name>Región</Name>
+          <SourceAttributeID>Region</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+</Dimension>

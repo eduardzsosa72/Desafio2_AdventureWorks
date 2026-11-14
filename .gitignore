@@ -1,0 +1,15 @@
+# Visual Studio / Analysis Services
+.vs/
+*.suo
+*.user
+bin/
+obj/
+*.bak
+*.tmp
+
+# Power BI temp files
+*.pbix.lock
+
+# OS
+Thumbs.db
+desktop.ini
