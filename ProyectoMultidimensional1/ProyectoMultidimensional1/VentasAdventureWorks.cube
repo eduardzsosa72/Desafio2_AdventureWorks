@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="VentasAdventureWorks" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>VentasAdventureWorks</ID>
+  <Name>Ventas Adventure Works</Name>
+  <DefaultMeasure>Ventas Internet</DefaultMeasure>
+  <DataSourceViewID>AdventureWorksDW2022</DataSourceViewID>
+
+  <Dimensions>
+    <Dimension>
+      <ID>DimDate</ID>
+      <Name>Fecha</Name>
+      <DimensionID>DimDate</DimensionID>
+    </Dimension>
+    <Dimension>
+      <ID>DimProduct</ID>
+      <Name>Producto</Name>
+      <DimensionID>DimProduct</DimensionID>
+    </Dimension>
+    <Dimension>
+      <ID>DimSalesTerritory</ID>
+      <Name>Territorio de Ventas</Name>
+      <DimensionID>DimSalesTerritory</DimensionID>
+    </Dimension>
+    <Dimension>
+      <ID>DimCustomer</ID>
+      <Name>Cliente</Name>
+      <DimensionID>DimCustomer</DimensionID>
+    </Dimension>
+  </Dimensions>
+
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>Ventas Internet</ID>
+      <Name>Ventas Internet</Name>
+      <Measures>
+        <Measure>
+          <ID>Ventas Internet SalesAmount</ID>
+          <Name>Ventas Internet</Name>
+          <AggregateFunction>Sum</AggregateFunction>
+          <Source xsi:type="DataItem">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>FactInternetSales</TableID>
+              <ColumnID>SalesAmount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure>
+          <ID>Costo Internet</ID>
+          <Name>Costo Producto Internet</Name>
+          <AggregateFunction>Sum</AggregateFunction>
+          <Source xsi:type="DataItem">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>FactInternetSales</TableID>
+              <ColumnID>TotalProductCost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure>
+          <ID>Unidades Internet</ID>
+          <Name>Unidades Vendidas Internet</Name>
+          <AggregateFunction>Sum</AggregateFunction>
+          <Source xsi:type="DataItem">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>FactInternetSales</TableID>
+              <ColumnID>OrderQuantity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <Partitions>
+        <Partition>
+          <ID>Ventas Internet Part</ID>
+          <Name>Ventas Internet</Name>
+          <Source xsi:type="TableBinding">
+            <DataSourceViewID>AdventureWorksDW2022</DataSourceViewID>
+            <TableID>FactInternetSales</TableID>
+          </Source>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+
+    <MeasureGroup>
+      <ID>Ventas Reseller</ID>
+      <Name>Ventas Reseller</Name>
+      <Measures>
+        <Measure>
+          <ID>Ventas Reseller SalesAmount</ID>
+          <Name>Ventas Reseller</Name>
+          <AggregateFunction>Sum</AggregateFunction>
+          <Source xsi:type="DataItem">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>FactResellerSales</TableID>
+              <ColumnID>SalesAmount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure>
+          <ID>Costo Reseller</ID>
+          <Name>Costo Producto Reseller</Name>
+          <AggregateFunction>Sum</AggregateFunction>
+          <Source xsi:type="DataItem">
+            <DataType>Currency</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>FactResellerSales</TableID>
+              <ColumnID>TotalProductCost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure>
+          <ID>Unidades Reseller</ID>
+          <Name>Unidades Vendidas Reseller</Name>
+          <AggregateFunction>Sum</AggregateFunction>
+          <Source xsi:type="DataItem">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>FactResellerSales</TableID>
+              <ColumnID>OrderQuantity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <Partitions>
+        <Partition>
+          <ID>Ventas Reseller Part</ID>
+          <Name>Ventas Reseller</Name>
+          <Source xsi:type="TableBinding">
+            <DataSourceViewID>AdventureWorksDW2022</DataSourceViewID>
+            <TableID>FactResellerSales</TableID>
+          </Source>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+
+  <MdxScripts>
+    <MdxScript>
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <Commands>
+        <Command>
+          <Text>CALCULATE;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Ganancia Internet]
+AS [Measures].[Ventas Internet] - [Measures].[Costo Producto Internet],
+FORMAT_STRING = "Currency", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Ganancia Reseller]
+AS [Measures].[Ventas Reseller] - [Measures].[Costo Producto Reseller],
+FORMAT_STRING = "Currency", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Ganancia Total]
+AS [Measures].[Ganancia Internet] + [Measures].[Ganancia Reseller],
+FORMAT_STRING = "Currency", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Margen Internet Pct]
+AS IIF([Measures].[Ventas Internet] = 0, NULL,
+   ([Measures].[Ganancia Internet] / [Measures].[Ventas Internet]) * 100),
+FORMAT_STRING = "#0.00", VISIBLE = 1;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Margen Reseller Pct]
+AS IIF([Measures].[Ventas Reseller] = 0, NULL,
+   ([Measures].[Ganancia Reseller] / [Measures].[Ventas Reseller]) * 100),
+FORMAT_STRING = "#0.00", VISIBLE = 1;
+</Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
+</Cube>
