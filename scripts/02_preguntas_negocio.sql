@@ -90,7 +90,8 @@ SELECT
     SUM(CASE WHEN canal = 'Internet'  THEN ventas ELSE 0 END) AS Ventas_Internet,
     SUM(CASE WHEN canal = 'Reseller'  THEN ventas ELSE 0 END) AS Ventas_Reseller,
     SUM(CASE WHEN canal = 'Internet'  THEN ganancia ELSE 0 END) AS Ganancia_Internet,
-    SUM(CASE WHEN canal = 'Reseller'  THEN ganancia ELSE 0 END) AS Ganancia_Reseller
+    SUM(CASE WHEN canal = 'Reseller'  THEN ganancia ELSE 0 END) AS Ganancia_Reseller,
+    SUM(ganancia)                                               AS Ganancia_Total
 FROM (
     SELECT
         SalesTerritoryKey,
@@ -110,7 +111,7 @@ FROM (
 ) sub
 JOIN DimSalesTerritory t ON sub.SalesTerritoryKey = t.SalesTerritoryKey
 GROUP BY t.SalesTerritoryCountry, t.SalesTerritoryGroup
-ORDER BY SUM(ganancia) DESC;
+ORDER BY Ganancia_Total DESC;
 
 -- ============================================================
 -- PREGUNTA C

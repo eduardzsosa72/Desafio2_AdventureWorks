@@ -3,17 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Desafío Práctico 2 – AdventureWorks | Eduardo Sosa</title>
+<title>Desafío Práctico 2 – AdventureWorks | Eduardo Alejandro Sosa – SV251407</title>
 <style>
-  @page { size: A4; margin: 2cm; }
-  body { font-family: 'Calibri', Arial, sans-serif; font-size: 12pt; color: #1a1a1a; line-height: 1.5; }
-  h1 { font-size: 22pt; color: #1F3864; text-align: center; margin-top: 0; }
-  h2 { font-size: 16pt; color: #1F3864; border-bottom: 2px solid #1F3864; padding-bottom: 4px; margin-top: 32px; page-break-before: always; }
-  h2:first-of-type { page-break-before: avoid; }
-  h3 { font-size: 13pt; color: #2E4E8C; margin-top: 20px; }
-  .cover { text-align: center; padding: 60px 40px; border: 3px solid #1F3864; border-radius: 8px; margin-bottom: 40px; }
-  .cover p { font-size: 13pt; margin: 6px 0; }
-  .cover .label { font-weight: bold; color: #1F3864; }
+  @page {
+    size: A4; margin: 2cm 2cm 2.2cm 2cm;
+    @bottom-center { content: "Página " counter(page) " de " counter(pages); font-family: Calibri, Arial, sans-serif; font-size: 9pt; color: #777; }
+    @bottom-right { content: "SV251407"; font-family: Calibri, Arial, sans-serif; font-size: 9pt; color: #777; }
+  }
+  @page :first { @bottom-center { content: none; } @bottom-right { content: none; } }
+  body { font-family: 'Calibri', Arial, sans-serif; font-size: 12pt; color: #1a1a1a; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @media screen { body { max-width: 17cm; margin: 0 auto; padding: 1.5cm 1cm; } }
+  p { text-align: justify; }
+  h1 { font-size: 26pt; color: #1F3864; text-align: center; margin: 0; }
+  h2 { font-size: 16pt; color: #1F3864; border-bottom: 2px solid #1F3864; padding-bottom: 4px; margin-top: 0; break-before: page; break-after: avoid; }
+  h3 { font-size: 13pt; color: #2E4E8C; margin-top: 22px; break-after: avoid; }
+  .cover { box-sizing: border-box; min-height: 24cm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1.5cm 1.5cm; border: 3px solid #1F3864; border-radius: 8px; break-after: page; }
+  .cover p { text-align: center; margin: 4px 0; }
+  h3 + p { break-after: avoid; }
+  .cover-logo { width: 4.4cm; height: auto; display: block; margin: 0 auto 0.7cm; }
+  .cover-repo { font-size: 11pt; margin-top: 0.8cm !important; }
+  .cover-repo .label { display: block; font-weight: bold; color: #1F3864; }
+  .cover-materia { font-size: 14pt; color: #2E4E8C; font-weight: bold; }
+  .cover-rule { width: 55%; border-top: 2px solid #1F3864; margin: 0.9cm auto; }
+  .cover-sub { font-size: 15pt; color: #2E4E8C; margin-top: 10px !important; }
+  table.cover-data { width: auto; margin: 0 auto; }
+  table.cover-data tr td { border: none; background: none; padding: 5px 12px; font-size: 13pt; text-align: left; }
+  table.cover-data tr td:first-child { font-weight: bold; color: #1F3864; text-align: right; white-space: nowrap; }
+  .toc { list-style: none; padding: 0; margin: 20px 0; }
+  .toc li { border-bottom: 1px dotted #9aa7c2; padding: 9px 2px; margin: 0; }
+  .toc a { color: #1a1a1a; text-decoration: none; }
+  .toc .num { display: inline-block; width: 1.6cm; font-weight: bold; color: #1F3864; }
   .screenshot-box {
     border: 2px dashed #1F3864;
     background: #f0f4ff;
@@ -25,37 +44,44 @@
     border-radius: 4px;
   }
   .screenshot-box::before { content: "📷 "; font-style: normal; }
-  pre, code {
+  pre {
     background: #f4f4f4;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px 14px;
     font-family: 'Consolas', monospace;
-    font-size: 10pt;
-    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.35;
     white-space: pre-wrap;
     word-break: break-word;
+    break-inside: avoid;
   }
-  table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+  code { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; padding: 0 4px; font-family: 'Consolas', monospace; font-size: 10pt; word-break: break-word; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; break-inside: avoid; }
   th { background: #1F3864; color: white; padding: 8px 10px; text-align: left; }
   td { border: 1px solid #ccc; padding: 7px 10px; }
   tr:nth-child(even) td { background: #f0f4ff; }
-  .kpi-row { display: flex; gap: 20px; justify-content: center; margin: 20px 0; }
+  tr { break-inside: avoid; }
+  .kpi-row { display: flex; gap: 20px; justify-content: center; margin: 20px 0; break-inside: avoid; }
   .kpi { background: #1F3864; color: white; padding: 16px 28px; border-radius: 6px; text-align: center; }
   .kpi .value { font-size: 22pt; font-weight: bold; }
   .kpi .label { font-size: 10pt; }
-  .highlight { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 14px; margin: 12px 0; }
-  .page-break { page-break-before: always; }
+  .highlight { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 14px; margin: 12px 0; break-inside: avoid; text-align: justify; }
+  .page-break { break-before: page; }
   ul li, ol li { margin-bottom: 4px; }
   .footer { text-align: center; color: #888; font-size: 10pt; margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; }
-  .captura { width: 100%; max-width: 100%; border: 1px solid #ccc; border-radius: 4px; margin: 16px 0; display: block; }
-  .captura-label { font-size: 10pt; color: #555; font-style: italic; text-align: center; margin-top: -10px; margin-bottom: 20px; }
-  .chart-container { width: 420px; max-width: 100%; margin: 24px auto; }
-  .chart-row { display: flex; gap: 32px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin: 24px 0; }
-  .chart-box { text-align: center; }
-  .chart-box p { font-size: 10pt; color: #555; margin-top: 6px; font-style: italic; }
+  .captura { width: auto; max-width: 100%; max-height: 11.5cm; border: 1px solid #ccc; border-radius: 4px; margin: 16px auto 8px; display: block; break-inside: avoid; break-after: avoid; }
+  .captura-label { font-size: 10pt; color: #555; font-style: italic; text-align: center; margin-top: 0; margin-bottom: 20px; break-before: avoid; }
+  .chart-row { display: flex; gap: 24px; justify-content: center; align-items: flex-start; margin: 20px 0; break-inside: avoid; }
+  .chart-box { text-align: center; width: 295px; flex: 0 0 295px; }
+  .chart-box canvas { max-width: 100%; }
+  .chart-box p { font-size: 10pt; color: #555; margin-top: 6px; font-style: italic; text-align: center; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  Chart.defaults.animation = false;
+  Chart.defaults.devicePixelRatio = 3;
+</script>
 </head>
 <body>
 
@@ -63,29 +89,43 @@
 <!-- SECCIÓN 1 – PORTADA                                              -->
 <!-- ================================================================ -->
 <div class="cover">
+  <img src="documentacion/capturas/logo_udb.png" alt="Logo de la Universidad Don Bosco" class="cover-logo">
+  <p class="cover-materia">DMD 941 – Datawarehouse y Minería de Datos</p>
+  <div class="cover-rule"></div>
   <h1>Desafío Práctico 2</h1>
-  <h2 style="page-break-before:avoid; border:none; font-size:15pt; color:#2E4E8C;">
-    Datawarehouse y Minería de Datos<br>AdventureWorks – Análisis OLAP y Dashboard Power BI
-  </h2>
-  <br>
-  <p><span class="label">Estudiante:</span> Eduardo Sosa</p>
-  <p><span class="label">Carrera / Materia:</span> DMD 941 – Datawarehouse y Minería de Datos</p>
-  <p><span class="label">Docente:</span> Ing. Katherine Vigil</p>
-  <p><span class="label">Universidad:</span> Universidad Don Bosco</p>
-  <p><span class="label">Fecha de entrega:</span> Noviembre 2026</p>
-  <br>
-  <p><span class="label">Repositorio GitHub:</span>
-    <a href="https://github.com/eduardzsosa72/Desafio2_AdventureWorks">
-      github.com/eduardzsosa72/Desafio2_AdventureWorks
-    </a>
+  <p class="cover-sub">AdventureWorks – Análisis OLAP y Dashboard Power BI</p>
+  <div class="cover-rule"></div>
+  <table class="cover-data">
+    <tr><td>Estudiante:</td><td>Eduardo Alejandro Sosa</td></tr>
+    <tr><td>Carnet:</td><td>SV251407</td></tr>
+    <tr><td>Docente:</td><td>Ing. Katherine Vigil</td></tr>
+    <tr><td>Fecha de entrega:</td><td>Noviembre 2026</td></tr>
+  </table>
+  <p class="cover-repo"><span class="label">Repositorio GitHub</span>
+    <a href="https://github.com/eduardzsosa72/Desafio2_AdventureWorks">github.com/eduardzsosa72/Desafio2_AdventureWorks</a>
   </p>
 </div>
+
+<!-- ================================================================ -->
+<!-- CONTENIDO                                                        -->
+<!-- ================================================================ -->
+<h2 style="break-before:auto;">Contenido</h2>
+<ul class="toc">
+  <li><a href="#sec2"><span class="num">2</span>Restauración de la Base de Datos</a></li>
+  <li><a href="#sec3"><span class="num">3</span>Exploración de Datos</a></li>
+  <li><a href="#sec4"><span class="num">4</span>Consultas SQL para las 3 Preguntas de Negocio</a></li>
+  <li><a href="#sec5"><span class="num">5</span>Cubo OLAP en Visual Studio (SSAS)</a></li>
+  <li><a href="#sec6"><span class="num">6</span>Consultas MDX</a></li>
+  <li><a href="#sec7"><span class="num">7</span>Dashboard Power BI</a></li>
+  <li><a href="#sec8"><span class="num">8</span>Repositorio GitHub</a></li>
+  <li><a href="#sec9"><span class="num">9</span>Análisis Gerencial e Interpretación de Resultados</a></li>
+</ul>
 
 
 <!-- ================================================================ -->
 <!-- SECCIÓN 2 – RESTAURACIÓN DE LA BASE DE DATOS                     -->
 <!-- ================================================================ -->
-<h2>Sección 2 – Restauración de la Base de Datos</h2>
+<h2 id="sec2">Sección 2 – Restauración de la Base de Datos</h2>
 
 <p>
 Se utilizó la base de datos <strong>AdventureWorksDW2022</strong> (Data Warehouse de muestra de
@@ -120,7 +160,7 @@ Microsoft) conectada a través de <strong>SQL Server LocalDB</strong>
 <!-- ================================================================ -->
 <!-- SECCIÓN 3 – EXPLORACIÓN DE DATOS                                 -->
 <!-- ================================================================ -->
-<h2>Sección 3 – Exploración de Datos</h2>
+<h2 id="sec3">Sección 3 – Exploración de Datos</h2>
 
 <p>
 Se ejecutó el script <code>scripts/01_exploracion_datos.sql</code> para explorar la estructura
@@ -132,8 +172,8 @@ de las tablas, verificar recuentos de filas, rangos de fechas y distribuciones d
 
 <p>Hallazgos principales de la exploración:</p>
 <ul>
-  <li><strong>FactInternetSales</strong>: ~60,398 filas. Período 2005–2014.</li>
-  <li><strong>FactResellerSales</strong>: ~60,855 filas. Mayor volumen en dólares.</li>
+  <li><strong>FactInternetSales</strong>: 60,398 filas. Período: diciembre 2010 – enero 2014.</li>
+  <li><strong>FactResellerSales</strong>: 60,855 filas. Mayor volumen en dólares ($80.45M).</li>
   <li><strong>DimProduct</strong>: 606 productos activos.</li>
   <li><strong>DimProductCategory</strong>: 4 categorías (Bikes, Components, Clothing, Accessories).</li>
   <li><strong>DimSalesTerritory</strong>: 11 territorios en 3 grupos (North America, Europe, Pacific).</li>
@@ -143,7 +183,7 @@ de las tablas, verificar recuentos de filas, rangos de fechas y distribuciones d
 <!-- ================================================================ -->
 <!-- SECCIÓN 4 – CONSULTAS SQL PARA LAS 3 PREGUNTAS DE NEGOCIO       -->
 <!-- ================================================================ -->
-<h2>Sección 4 – Consultas SQL para las 3 Preguntas de Negocio</h2>
+<h2 id="sec4">Sección 4 – Consultas SQL para las 3 Preguntas de Negocio</h2>
 
 <h3>Pregunta A – Categorías y Subcategorías por Año y Trimestre</h3>
 <p>Consulta: <code>scripts/02_preguntas_negocio.sql</code> – bloque PREGUNTA A (líneas 17–40)</p>
@@ -169,26 +209,36 @@ ORDER BY dd.CalendarYear, dd.CalendarQuarter, VentasInternet DESC;</pre>
 <p class="captura-label">Figura 4a: SSMS – Pregunta A ejecutada (112 filas: Anio, Trimestre, Categoria, Subcategoria, VolumenUnidades, VentasTotales)</p>
 
 <h3>Pregunta B – Rentabilidad por Territorio: Internet vs. Reseller</h3>
-<p>Consulta: bloque PREGUNTA B (líneas 48–113)</p>
+<p>Consulta: bloque PREGUNTA B, vista pivotada Internet vs. Reseller por país (líneas 87–114)</p>
 
-<pre>-- PREGUNTA B: Rentabilidad por territorio Internet vs Reseller
+<pre>-- PREGUNTA B: Territorios con mayor rentabilidad - Internet vs Reseller
 SELECT
-    st.SalesTerritoryGroup AS Grupo,
-    st.SalesTerritoryCountry AS Pais,
-    SUM(fi.SalesAmount)   AS VentasInternet,
-    SUM(fi.TotalProductCost) AS CostoInternet,
-    SUM(fi.SalesAmount) - SUM(fi.TotalProductCost) AS GananciaInternet,
-    SUM(fr.SalesAmount)   AS VentasReseller,
-    SUM(fr.TotalProductCost) AS CostoReseller,
-    SUM(fr.SalesAmount) - SUM(fr.TotalProductCost) AS GananciaReseller
-FROM DimSalesTerritory st
-LEFT JOIN FactInternetSales fi ON st.SalesTerritoryKey = fi.SalesTerritoryKey
-LEFT JOIN FactResellerSales fr ON st.SalesTerritoryKey = fr.SalesTerritoryKey
-GROUP BY st.SalesTerritoryGroup, st.SalesTerritoryCountry
-ORDER BY GananciaInternet DESC;</pre>
+    t.SalesTerritoryCountry AS Pais,
+    t.SalesTerritoryGroup   AS GrupoRegional,
+    SUM(CASE WHEN canal = 'Internet' THEN ventas   ELSE 0 END) AS Ventas_Internet,
+    SUM(CASE WHEN canal = 'Reseller' THEN ventas   ELSE 0 END) AS Ventas_Reseller,
+    SUM(CASE WHEN canal = 'Internet' THEN ganancia ELSE 0 END) AS Ganancia_Internet,
+    SUM(CASE WHEN canal = 'Reseller' THEN ganancia ELSE 0 END) AS Ganancia_Reseller,
+    SUM(ganancia)                                              AS Ganancia_Total
+FROM (
+    SELECT SalesTerritoryKey, 'Internet' AS canal,
+           SUM(SalesAmount) AS ventas,
+           SUM(SalesAmount - TotalProductCost) AS ganancia
+    FROM FactInternetSales
+    GROUP BY SalesTerritoryKey
+    UNION ALL
+    SELECT SalesTerritoryKey, 'Reseller',
+           SUM(SalesAmount),
+           SUM(SalesAmount - TotalProductCost)
+    FROM FactResellerSales
+    GROUP BY SalesTerritoryKey
+) sub
+JOIN DimSalesTerritory t ON sub.SalesTerritoryKey = t.SalesTerritoryKey
+GROUP BY t.SalesTerritoryCountry, t.SalesTerritoryGroup
+ORDER BY Ganancia_Total DESC;</pre>
 
 <img src="documentacion/capturas/04b_pregunta_b_territorio.png" alt="SSMS - Pregunta B: Rentabilidad por territorio Internet vs Reseller" class="captura">
-<p class="captura-label">Figura 4b: SSMS – Pregunta B ejecutada (6 filas: Pais, GrupoRegional, Ventas_Internet, Ventas_Reseller, Ganancia_Total)</p>
+<p class="captura-label">Figura 4b: SSMS – Pregunta B ejecutada (6 filas: Pais, GrupoRegional, Ventas y Ganancia por canal, Ganancia_Total)</p>
 
 <h3>Pregunta C – Top 10 Productos más Rentables</h3>
 <p>Consulta: bloque PREGUNTA C (líneas 122–177)</p>
@@ -219,7 +269,7 @@ ORDER BY GananciaInternet DESC;</pre>
 <!-- ================================================================ -->
 <!-- SECCIÓN 5 – CUBO OLAP EN VISUAL STUDIO (SSAS)                   -->
 <!-- ================================================================ -->
-<h2>Sección 5 – Cubo OLAP en Visual Studio (SSAS)</h2>
+<h2 id="sec5">Sección 5 – Cubo OLAP en Visual Studio (SSAS)</h2>
 
 <p>
 Se creó un proyecto de tipo <strong>Analysis Services Multidimensional</strong> en Visual Studio
@@ -246,91 +296,92 @@ con el nombre <strong>ProyectoMultidimensional1</strong>. El cubo se llama
 <img src="documentacion/capturas/05b_vs_ssas_cubo.png" alt="Visual Studio – Diseñador del cubo VentasAdventureWorks" class="captura">
 <p class="captura-label">Figura 5b – Diseñador del cubo VentasAdventureWorks mostrando las medidas (Ventas Internet, Reseller) y las dimensiones vinculadas (Fecha, Producto, Territorio de Ventas, Cliente).</p>
 
+<img src="documentacion/capturas/05c_vs_ssas_compilacion_0_errores.png" alt="Visual Studio – Lista de errores con 0 errores tras recompilar la solución" class="captura">
+<p class="captura-label">Figura 5c – Lista de errores de Visual Studio tras recompilar la solución: 0 errores. Las 12 advertencias son recomendaciones de diseño de Analysis Services y no impiden la compilación.</p>
+
 
 <!-- ================================================================ -->
 <!-- SECCIÓN 6 – CONSULTAS MDX                                        -->
 <!-- ================================================================ -->
-<h2>Sección 6 – Consultas MDX</h2>
+<h2 id="sec6">Sección 6 – Consultas MDX</h2>
 
 <p>
-Las consultas MDX fueron diseñadas para el cubo <strong>Adventure Works</strong> integrado en
-SQL Server Analysis Services. Se definieron 9 consultas (3 por cada pregunta de negocio).
+Las consultas MDX fueron diseñadas para el cubo <strong>Ventas Adventure Works</strong> del proyecto
+SSAS, usando sus medidas y dimensiones en español. Se definieron 9 consultas (3 por cada pregunta de negocio).
 </p>
 
 <img src="documentacion/capturas/06_mdx_consultas.png" alt="Archivo consultas_mdx.mdx con las 9 consultas MDX" class="captura">
 <p class="captura-label">Figura 6 – Archivo consultas_mdx.mdx mostrando las consultas MDX definidas para las tres preguntas de negocio (A1–A3, B1–B3, C1–C3) sobre el cubo VentasAdventureWorks.</p>
 
 <h3>Pregunta A – Ventas por Categoría y Trimestre (MDX)</h3>
-<pre>-- A1. Ventas por Categoría y Año
+<pre>-- A1. Ventas por Categoria y Año
 SELECT
-  NON EMPTY {
-    [Measures].[Internet Sales Amount],
-    [Measures].[Internet Order Quantity],
-    [Measures].[Internet Gross Profit]
-  } ON COLUMNS,
-  NON EMPTY
-    [Product].[Category].[Category].MEMBERS
-    * [Date].[Calendar Year].[Calendar Year].MEMBERS
-  ON ROWS
-FROM [Adventure Works];
+    NON EMPTY {
+        [Measures].[Ventas Internet],
+        [Measures].[Unidades Vendidas Internet],
+        [Measures].[Ganancia Internet]
+    } ON COLUMNS,
+    NON EMPTY
+        [Producto].[Categoría].[Categoría].MEMBERS
+        * [Fecha].[Año].[Año].MEMBERS
+    ON ROWS
+FROM [Ventas Adventure Works];
 
--- A2. Ventas por Subcategoría por Trimestre
+-- A2. Ventas por Subcategoria por Trimestre (mas detallado)
 SELECT
-  NON EMPTY {
-    [Measures].[Internet Sales Amount],
-    [Measures].[Internet Order Quantity]
-  } ON COLUMNS,
-  NON EMPTY
-    NONEMPTY(
-      [Product].[Product Categories].[Subcategory].MEMBERS
-      * [Date].[Calendar Quarter of Year].[Calendar Quarter of Year].MEMBERS
-    )
-  ON ROWS
-FROM [Adventure Works]
-ORDER(
-  [Product].[Product Categories].[Subcategory].MEMBERS,
-  [Measures].[Internet Sales Amount], BDESC
-);</pre>
+    NON EMPTY {
+        [Measures].[Ventas Internet],
+        [Measures].[Unidades Vendidas Internet]
+    } ON COLUMNS,
+    NON EMPTY
+        ORDER(
+            [Producto].[Categoría - Producto].[Subcategoría].MEMBERS
+            * [Fecha].[Trimestre].[Trimestre].MEMBERS,
+            [Measures].[Ventas Internet],
+            BDESC
+        )
+    ON ROWS
+FROM [Ventas Adventure Works];</pre>
 
 <h3>Pregunta B – Rentabilidad por Territorio (MDX)</h3>
-<pre>-- B1. Comparativa Internet vs Reseller por País
+<pre>-- B1. Comparativa Internet vs Reseller por Pais
 SELECT
-  NON EMPTY {
-    [Measures].[Internet Sales Amount],
-    [Measures].[Reseller Sales Amount],
-    [Measures].[Internet Gross Profit],
-    [Measures].[Reseller Gross Profit]
-  } ON COLUMNS,
-  NON EMPTY
-    [Sales Territory].[Sales Territory Country].[Sales Territory Country].MEMBERS
-  ON ROWS
-FROM [Adventure Works]
-ORDER(
-  [Sales Territory].[Sales Territory Country].[Sales Territory Country].MEMBERS,
-  [Measures].[Internet Gross Profit], BDESC
-);</pre>
+    NON EMPTY {
+        [Measures].[Ventas Internet],
+        [Measures].[Ventas Reseller],
+        [Measures].[Ganancia Internet],
+        [Measures].[Ganancia Reseller]
+    } ON COLUMNS,
+    NON EMPTY
+        ORDER(
+            [Territorio de Ventas].[País].[País].MEMBERS,
+            [Measures].[Ganancia Internet],
+            BDESC
+        )
+    ON ROWS
+FROM [Ventas Adventure Works];</pre>
 
 <h3>Pregunta C – Top 10 Productos más Rentables (MDX)</h3>
-<pre>-- C1. Top 10 Productos por Ganancia
+<pre>-- C1. Top 10 productos por ganancia bruta (ranking global)
 SELECT
-  NON EMPTY {
-    [Measures].[Internet Sales Amount],
-    [Measures].[Internet Gross Profit]
-  } ON COLUMNS,
-  NON EMPTY
+    {
+        [Measures].[Ventas Internet],
+        [Measures].[Costo Producto Internet],
+        [Measures].[Ganancia Internet],
+        [Measures].[Margen Internet Pct]
+    } ON COLUMNS,
     TOPCOUNT(
-      [Product].[Product].[Product].MEMBERS,
-      10,
-      [Measures].[Internet Gross Profit]
-    )
-  ON ROWS
-FROM [Adventure Works];</pre>
+        [Producto].[Producto].[Producto].MEMBERS,
+        10,
+        [Measures].[Ganancia Internet]
+    ) ON ROWS
+FROM [Ventas Adventure Works];</pre>
 
 
 <!-- ================================================================ -->
 <!-- SECCIÓN 7 – DASHBOARD POWER BI                                   -->
 <!-- ================================================================ -->
-<h2>Sección 7 – Dashboard Power BI</h2>
+<h2 id="sec7">Sección 7 – Dashboard Power BI</h2>
 
 <p>
 El dashboard fue desarrollado en <strong>Power BI Desktop (octubre 2026)</strong> conectado a
@@ -373,7 +424,7 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
     data: {
       labels: ['Bikes', 'Accessories', 'Clothing'],
       datasets: [{
-        data: [28318145, 700759, 339772],
+        data: [28318145, 700760, 339773],
         backgroundColor: ['#1F3864','#2E75B6','#9DC3E6'],
         borderColor: '#fff', borderWidth: 2
       }]
@@ -392,7 +443,7 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
       labels: ['Bikes', 'Accessories', 'Clothing'],
       datasets: [{
         label: 'Ventas Internet ($)',
-        data: [28318145, 700759, 339772],
+        data: [28318145, 700760, 339773],
         backgroundColor: ['#1F3864','#2E75B6','#9DC3E6'],
         borderRadius: 4
       }]
@@ -411,7 +462,7 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
 <h3>Página B – Rentabilidad por Territorio</h3>
 <div class="kpi-row">
   <div class="kpi"><div class="value">$12.08M</div><div class="label">Ganancia Internet</div></div>
-  <div class="kpi"><div class="value">$470.48M</div><div class="label">Ganancia Reseller</div></div>
+  <div class="kpi"><div class="value">$470.48K</div><div class="label">Ganancia Reseller</div></div>
   <div class="kpi"><div class="value">$12.55M</div><div class="label">Ganancia Total</div></div>
 </div>
 <p><strong>Visualizaciones:</strong> 3 tarjetas KPI + Gráfico circular (Ganancia Total por país) + Gráfico de barras agrupadas (Ganancia Reseller y Ganancia Internet por país) + Segmentador (SalesTerritoryGroup)</p>
@@ -423,7 +474,7 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
   </div>
   <div class="chart-box">
     <canvas id="chartTerritorioBar" width="400" height="400"></canvas>
-    <p>Ganancia Internet vs Reseller por País ($M)</p>
+    <p>Ganancia Internet vs Reseller por País (miles de $)</p>
   </div>
 </div>
 <script>
@@ -434,7 +485,7 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
     data: {
       labels: ['United States','Australia','United Kingdom','Germany','France','Canada'],
       datasets: [{
-        data: [4444138924, 3577134942, 1396872685, 1076117058, 1048955118, 1008148926],
+        data: [4444139, 3577134, 1396873, 1076117, 1048955, 1008149],
         backgroundColor: ['#1F3864','#2E75B6','#4472C4','#9DC3E6','#BDD7EE','#DEEAF1'],
         borderColor: '#fff', borderWidth: 2
       }]
@@ -452,8 +503,8 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
     data: {
       labels: ['USA','Australia','UK','Germany','France','Canada'],
       datasets: [
-        { label: 'Ganancia Internet ($M)', data: [3900980, 3685855, 1390490, 1187370, 1086264, 829921], backgroundColor: '#1F3864', borderRadius: 3 },
-        { label: 'Ganancia Reseller ($M)', data: [543157, -108720, 6381, -111253, -37309, 178227], backgroundColor: '#9DC3E6', borderRadius: 3 }
+        { label: 'Ganancia Internet ($)', data: [3900981, 3685855, 1390491, 1187371, 1086265, 829922], backgroundColor: '#1F3864', borderRadius: 3 },
+        { label: 'Ganancia Reseller ($)', data: [543158, -108721, 6382, -111254, -37310, 178227], backgroundColor: '#9DC3E6', borderRadius: 3 }
       ]
     },
     options: {
@@ -477,23 +528,23 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
   </div>
   <div class="chart-box">
     <canvas id="chartTop10Bar" width="420" height="420"></canvas>
-    <p>Ganancia Bruta por Producto — Top 10 ($M)</p>
+    <p>Ganancia Bruta por Producto — Top 10 (miles de $)</p>
   </div>
 </div>
 <script>
 (function(){
   var productos = [
     'Mountain-200 Black, 46','Mountain-200 Black, 42','Mountain-200 Silver, 38',
-    'Mountain-200 Silver, 42','Mountain-200 Black, 38','Mountain-200 Silver, 42b',
+    'Mountain-200 Silver, 46','Mountain-200 Black, 38','Mountain-200 Silver, 42',
     'Road-150 Red, 48','Road-150 Red, 62','Road-150 Red, 52','Road-150 Red, 56'
   ];
-  var ganancias = [626621.57, 621759.60, 610864.43, 593490.47, 590477.46, 573511.93, 474150.84, 472743.86, 424906.69, 415057.86];
+  var ganancias = [626621.57, 621759.61, 610864.43, 593490.47, 590477.46, 573511.94, 474150.84, 472743.87, 424906.69, 415057.86];
   var blues = ['#1F3864','#1F3864','#1F3864','#1F3864','#1F3864','#1F3864','#2E75B6','#2E75B6','#2E75B6','#2E75B6'];
   var ctxP = document.getElementById('chartTop10Pie').getContext('2d');
   new Chart(ctxP, {
     type: 'pie',
     data: {
-      labels: ['M-200 Black,46','M-200 Black,42','M-200 Silver,38','M-200 Silver,42','M-200 Black,38','M-200 Silver,42b','R-150 Red,48','R-150 Red,62','R-150 Red,52','R-150 Red,56'],
+      labels: ['M-200 Black,46','M-200 Black,42','M-200 Silver,38','M-200 Silver,46','M-200 Black,38','M-200 Silver,42','R-150 Red,48','R-150 Red,62','R-150 Red,52','R-150 Red,56'],
       datasets: [{
         data: ganancias,
         backgroundColor: ['#1F3864','#1A3356','#243F6E','#2A4B82','#2E5491','#345D9D','#2E75B6','#3B85C6','#4A91CE','#5E9FD4'],
@@ -511,7 +562,7 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
   new Chart(ctxB, {
     type: 'bar',
     data: {
-      labels: ['M-200 Blk46','M-200 Blk42','M-200 Sil38','M-200 Sil42','M-200 Blk38','M-200 Sil42b','R-150 48','R-150 62','R-150 52','R-150 56'],
+      labels: ['M-200 Blk46','M-200 Blk42','M-200 Sil38','M-200 Sil46','M-200 Blk38','M-200 Sil42','R-150 48','R-150 62','R-150 52','R-150 56'],
       datasets: [{ label: 'Ganancia Bruta', data: ganancias, backgroundColor: blues, borderRadius: 3 }]
     },
     options: {
@@ -524,13 +575,18 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
 </script>
 
 <table>
-  <tr><th>Producto (Top)</th><th>Margen %</th><th>Ganancia Internet</th></tr>
-  <tr><td>Mountain-200 Black, 38</td><td>45.62%</td><td>$626,621,573</td></tr>
-  <tr><td>Mountain-200 Black, 42</td><td>45.61%</td><td>$621,759,608</td></tr>
-  <tr><td>Mountain-200 Silver, 38</td><td>45.61%</td><td>$610,864,434</td></tr>
-  <tr><td>Mountain-200 Silver, 42</td><td>45.61%</td><td>$593,490,472</td></tr>
-  <tr><td>Mountain-200 Black, 46</td><td>45.60%</td><td>$590,477,460</td></tr>
-  <tr><td colspan="2"><strong>Total Top 10</strong></td><td><strong>$5,403,584,753</strong></td></tr>
+  <tr><th>Producto (Top 10)</th><th>Margen %</th><th>Ganancia Internet</th></tr>
+  <tr><td>Mountain-200 Black, 46</td><td>45.62%</td><td>$626,621.57</td></tr>
+  <tr><td>Mountain-200 Black, 42</td><td>45.61%</td><td>$621,759.61</td></tr>
+  <tr><td>Mountain-200 Silver, 38</td><td>45.61%</td><td>$610,864.43</td></tr>
+  <tr><td>Mountain-200 Silver, 46</td><td>45.61%</td><td>$593,490.47</td></tr>
+  <tr><td>Mountain-200 Black, 38</td><td>45.60%</td><td>$590,477.46</td></tr>
+  <tr><td>Mountain-200 Silver, 42</td><td>45.61%</td><td>$573,511.94</td></tr>
+  <tr><td>Road-150 Red, 48</td><td>39.32%</td><td>$474,150.84</td></tr>
+  <tr><td>Road-150 Red, 62</td><td>39.32%</td><td>$472,743.87</td></tr>
+  <tr><td>Road-150 Red, 52</td><td>39.32%</td><td>$424,906.69</td></tr>
+  <tr><td>Road-150 Red, 56</td><td>39.32%</td><td>$415,057.86</td></tr>
+  <tr><td colspan="2"><strong>Total Top 10</strong></td><td><strong>$5,403,584.74</strong></td></tr>
 </table>
 
 <img src="documentacion/capturas/07c_pbi_pagina_c.png" alt="Power BI - Página C: Top 10 Productos" class="captura">
@@ -540,10 +596,10 @@ Ganancia Total     = [Ganancia Internet] + [Ganancia Reseller]</pre>
 <!-- ================================================================ -->
 <!-- SECCIÓN 8 – REPOSITORIO GITHUB                                   -->
 <!-- ================================================================ -->
-<h2>Sección 8 – Repositorio GitHub</h2>
+<h2 id="sec8">Sección 8 – Repositorio GitHub</h2>
 
-<p>
-El proyecto completo fue subido al repositorio público de GitHub:
+<p style="text-align:left;">
+El proyecto completo fue subido al repositorio público de GitHub:<br>
 <a href="https://github.com/eduardzsosa72/Desafio2_AdventureWorks">
   <strong>github.com/eduardzsosa72/Desafio2_AdventureWorks</strong>
 </a>
@@ -560,34 +616,32 @@ El proyecto completo fue subido al repositorio público de GitHub:
   <li><code>README.md</code> – Descripción del repositorio</li>
 </ul>
 
-<div class="screenshot-box">
-  CAPTURA: Pantalla de GitHub mostrando el repositorio "Desafio2_AdventureWorks"
-  con la lista de archivos y el último commit
-  (URL: github.com/eduardzsosa72/Desafio2_AdventureWorks)
-</div>
+<img src="documentacion/capturas/08_github_repositorio.png" alt="GitHub – Repositorio público Desafio2_AdventureWorks con la lista de archivos y el último commit" class="captura">
+<p class="captura-label">Figura 8 – Repositorio público Desafio2_AdventureWorks en GitHub mostrando la lista de archivos y el último commit en la rama main.</p>
 
 
 <!-- ================================================================ -->
 <!-- SECCIÓN 9 – ANÁLISIS GERENCIAL                                   -->
 <!-- ================================================================ -->
-<h2>Sección 9 – Análisis Gerencial e Interpretación de Resultados</h2>
+<h2 id="sec9">Sección 9 – Análisis Gerencial e Interpretación de Resultados</h2>
 
 <h3>Pregunta A – Categorías con Mayor Volumen de Ventas</h3>
 <p>
 Los datos revelan que la categoría <strong>Bikes (Bicicletas)</strong> genera el mayor volumen
-de ventas en dólares, representando aproximadamente el 70% de los ingresos totales por Internet.
+de ventas en dólares, representando aproximadamente el 96% de los ingresos totales por Internet.
 Dentro de ella, las subcategorías <strong>Road Bikes</strong> y <strong>Mountain Bikes</strong>
 lideran consistentemente año tras año. La categoría <strong>Accessories</strong>, aunque con
 menor valor unitario, destaca por su alto volumen de unidades vendidas.
 </p>
 <p>
-En cuanto a la tendencia trimestral, se observa un <strong>patrón estacional claro</strong>:
-las ventas aumentan notablemente en el <strong>Q2 y Q4</strong> de cada año calendario.
-Los trimestres Q1 muestran consistentemente los volúmenes más bajos.
+En cuanto a la tendencia trimestral, se observa un <strong>patrón claro</strong>:
+las ventas por Internet crecen a lo largo del año y alcanzan su punto más alto en el
+<strong>Q4</strong> ($9.11M acumulados), mientras que el <strong>Q1</strong> registra
+el volumen más bajo ($5.52M).
 </p>
 <div class="highlight">
   <strong>Recomendación para la gerencia:</strong> Concentrar esfuerzos de marketing y disponibilidad
-  de inventario en Road Bikes y Mountain Bikes durante Q2, y preparar promociones cruzadas de
+  de inventario en Road Bikes y Mountain Bikes durante el segundo semestre (sobre todo Q4), y preparar promociones cruzadas de
   Accessories junto con bicicletas para maximizar el valor por transacción.
 </div>
 
@@ -596,19 +650,19 @@ Los trimestres Q1 muestran consistentemente los volúmenes más bajos.
 <strong>Estados Unidos</strong> y <strong>Australia</strong> son los mercados de mayor
 rentabilidad absoluta. El canal <strong>Internet supera al Reseller</strong> en márgenes netos (%)
 porque elimina intermediarios. Sin embargo, el canal <strong>Reseller genera mayor volumen</strong>
-total de ventas, especialmente en Europa.
+total de ventas, especialmente en Norteamérica.
 </p>
 <ul>
   <li><strong>North America:</strong> domina en volumen; EE. UU. es el principal mercado.</li>
   <li><strong>Pacific:</strong> Australia concentra prácticamente todas las ventas del grupo
       con margen saludable por Internet.</li>
-  <li><strong>Europe:</strong> el canal Reseller predomina sobre Internet, indicando una red
-      de distribución más tradicional.</li>
+  <li><strong>Europe:</strong> el canal Reseller vende más que Internet ($10.9M frente a $8.9M),
+      pero casi sin ganancia: es negativa en Alemania y Francia.</li>
 </ul>
 <div class="highlight">
   <strong>Recomendación:</strong> Invertir en la plataforma de e-commerce para los mercados
-  europeos (especialmente Reino Unido y Alemania), donde el canal Internet aún tiene penetración
-  baja frente al Reseller. Esto podría aumentar los márgenes netos entre 5% y 12%.
+  europeos (especialmente Reino Unido y Francia), donde el canal Reseller todavía vende más
+  que Internet. Esto podría aumentar los márgenes netos entre 5% y 12%.
 </div>
 
 <h3>Pregunta C – Los 10 Productos más Rentables</h3>
@@ -616,7 +670,7 @@ total de ventas, especialmente en Europa.
 Los 10 productos con mayor ganancia bruta son <strong>exclusivamente modelos de bicicletas de
 alta gama</strong>, encabezados por la familia <strong>Mountain-200</strong> (Negro/Plateado,
 varias tallas) con márgenes superiores al 45%. La distribución temporal muestra ventas consistentes
-con picos en Q2.
+que alcanzan su mayor nivel en Q4.
 </p>
 <div class="highlight">
   <strong>Recomendación:</strong> Estos 10 productos representan el "portafolio estrella" de la
@@ -632,12 +686,12 @@ bicicletas premium con distribución global. Las oportunidades de crecimiento es
 </p>
 <ol>
   <li>Digitalizar más los mercados europeos (crecimiento del canal Internet).</li>
-  <li>Potenciar campañas en Q2 y Q4, donde la demanda es naturalmente más alta.</li>
+  <li>Potenciar campañas en el segundo semestre, sobre todo en Q4, donde la demanda es más alta.</li>
   <li>Proteger y destacar el portafolio de los 10 productos top que concentran la mayor rentabilidad.</li>
 </ol>
 
 <div class="footer">
-  Desafío Práctico 2 – DMD 941 Datawarehouse y Minería de Datos | Eduardo Sosa | Noviembre 2026
+  Desafío Práctico 2 – DMD 941 Datawarehouse y Minería de Datos | Eduardo Alejandro Sosa – SV251407 | Noviembre 2026
 </div>
 
 </body>

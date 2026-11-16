@@ -141,7 +141,7 @@
       </Attributes>
     </Dimension>
   </Dimensions>
-  <DefaultMeasure>Ventas Internet</DefaultMeasure>
+  <DefaultMeasure>[Measures].[Ventas Internet]</DefaultMeasure>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="5907fbd3-dd8b-4231-99d3-abb079f94d67">
       <ID>Ventas Internet</ID>

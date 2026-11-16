@@ -56,7 +56,7 @@
           <ConfigurationSetting>
             <Id>AdventureWorksDW2022</Id>
             <Name>AdventureWorksDW2022</Name>
-            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL;Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AdventureWorksDW2022;Integrated Security=SSPI;Persist Security Info=False</Value>
+            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL;Data Source=localhost;Initial Catalog=AdventureWorksDW2022;Integrated Security=SSPI;Persist Security Info=False</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>

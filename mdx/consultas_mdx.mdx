@@ -1,6 +1,7 @@
 -- ============================================================
 -- DESAFIO PRACTICO 2 - Consultas MDX sobre el Cubo OLAP
 -- Universidad Don Bosco | Ing. Katherine Vigil
+-- Cubo: [Ventas Adventure Works] (proyecto ProyectoMultidimensional1)
 -- NOTA: Ejecutar en SQL Server Management Studio
 --       conectado a Analysis Services (SSAS)
 -- ============================================================
@@ -11,45 +12,42 @@
 -- ============================================================
 
 -- A1. Ventas por Categoria y Año
-SELECT 
+SELECT
     NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Internet Order Quantity],
-        [Measures].[Internet Gross Profit]
+        [Measures].[Ventas Internet],
+        [Measures].[Unidades Vendidas Internet],
+        [Measures].[Ganancia Internet]
     } ON COLUMNS,
-    NON EMPTY 
-        [Product].[Category].[Category].MEMBERS 
-        * [Date].[Calendar Year].[Calendar Year].MEMBERS
+    NON EMPTY
+        [Producto].[Categoría].[Categoría].MEMBERS
+        * [Fecha].[Año].[Año].MEMBERS
     ON ROWS
-FROM [Adventure Works];
+FROM [Ventas Adventure Works];
 
 
 -- A2. Ventas por Subcategoria por Trimestre (mas detallado)
-SELECT 
+SELECT
     NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Internet Order Quantity]
+        [Measures].[Ventas Internet],
+        [Measures].[Unidades Vendidas Internet]
     } ON COLUMNS,
-    NON EMPTY 
-        NONEMPTY(
-            [Product].[Product Categories].[Subcategory].MEMBERS
-            * [Date].[Calendar Quarter of Year].[Calendar Quarter of Year].MEMBERS
+    NON EMPTY
+        ORDER(
+            [Producto].[Categoría - Producto].[Subcategoría].MEMBERS
+            * [Fecha].[Trimestre].[Trimestre].MEMBERS,
+            [Measures].[Ventas Internet],
+            BDESC
         )
     ON ROWS
-FROM [Adventure Works]
-ORDER(
-    [Product].[Product Categories].[Subcategory].MEMBERS,
-    [Measures].[Internet Sales Amount],
-    BDESC
-);
+FROM [Ventas Adventure Works];
 
 
 -- A3. Tendencia trimestral de la categoria con mas ventas
-SELECT 
-    NON EMPTY [Date].[Calendar Quarter].[Calendar Quarter].MEMBERS ON COLUMNS,
-    NON EMPTY [Product].[Category].[Category].MEMBERS ON ROWS
-FROM [Adventure Works]
-WHERE [Measures].[Internet Sales Amount];
+SELECT
+    NON EMPTY [Fecha].[Trimestre].[Trimestre].MEMBERS ON COLUMNS,
+    NON EMPTY [Producto].[Categoría].[Categoría].MEMBERS ON ROWS
+FROM [Ventas Adventure Works]
+WHERE [Measures].[Ventas Internet];
 
 
 -- ============================================================
@@ -57,52 +55,51 @@ WHERE [Measures].[Internet Sales Amount];
 -- ============================================================
 
 -- B1. Comparativa Internet vs Reseller por Pais
-SELECT 
+SELECT
     NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Reseller Sales Amount],
-        [Measures].[Internet Gross Profit],
-        [Measures].[Reseller Gross Profit]
+        [Measures].[Ventas Internet],
+        [Measures].[Ventas Reseller],
+        [Measures].[Ganancia Internet],
+        [Measures].[Ganancia Reseller]
     } ON COLUMNS,
-    NON EMPTY 
-        [Sales Territory].[Sales Territory Country].[Sales Territory Country].MEMBERS
+    NON EMPTY
+        ORDER(
+            [Territorio de Ventas].[País].[País].MEMBERS,
+            [Measures].[Ganancia Internet],
+            BDESC
+        )
     ON ROWS
-FROM [Adventure Works]
-ORDER(
-    [Sales Territory].[Sales Territory Country].[Sales Territory Country].MEMBERS,
-    [Measures].[Internet Gross Profit],
-    BDESC
-);
+FROM [Ventas Adventure Works];
 
 
 -- B2. Por grupo regional
-SELECT 
+SELECT
     NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Reseller Sales Amount],
-        [Measures].[Internet Gross Profit Margin],
-        [Measures].[Reseller Gross Profit Margin]
+        [Measures].[Ventas Internet],
+        [Measures].[Ventas Reseller],
+        [Measures].[Margen Internet Pct],
+        [Measures].[Margen Reseller Pct]
     } ON COLUMNS,
-    NON EMPTY 
-        [Sales Territory].[Sales Territory Group].[Sales Territory Group].MEMBERS
+    NON EMPTY
+        [Territorio de Ventas].[Grupo Regional].[Grupo Regional].MEMBERS
     ON ROWS
-FROM [Adventure Works];
+FROM [Ventas Adventure Works];
 
 
 -- B3. Desglose completo: Grupo > Pais > Region
-SELECT 
+SELECT
     NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Reseller Sales Amount]
+        [Measures].[Ventas Internet],
+        [Measures].[Ventas Reseller]
     } ON COLUMNS,
-    NON EMPTY 
+    NON EMPTY
         HIERARCHIZE(
-            [Sales Territory].[Sales Territory].[Sales Territory Group].MEMBERS
-            + [Sales Territory].[Sales Territory].[Country].MEMBERS
-            + [Sales Territory].[Sales Territory].[Region].MEMBERS
+            [Territorio de Ventas].[Geografía].[Grupo Regional].MEMBERS
+            + [Territorio de Ventas].[Geografía].[País].MEMBERS
+            + [Territorio de Ventas].[Geografía].[Región].MEMBERS
         )
     ON ROWS
-FROM [Adventure Works];
+FROM [Ventas Adventure Works];
 
 
 -- ============================================================
@@ -110,51 +107,46 @@ FROM [Adventure Works];
 -- ============================================================
 
 -- C1. Top 10 productos por ganancia bruta (ranking global)
-SELECT 
-    NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Internet Total Product Cost],
-        [Measures].[Internet Gross Profit],
-        [Measures].[Internet Gross Profit Margin]
+SELECT
+    {
+        [Measures].[Ventas Internet],
+        [Measures].[Costo Producto Internet],
+        [Measures].[Ganancia Internet],
+        [Measures].[Margen Internet Pct]
     } ON COLUMNS,
     TOPCOUNT(
-        NON EMPTY [Product].[Product].[Product].MEMBERS,
+        [Producto].[Producto].[Producto].MEMBERS,
         10,
-        [Measures].[Internet Gross Profit]
+        [Measures].[Ganancia Internet]
     ) ON ROWS
-FROM [Adventure Works];
+FROM [Ventas Adventure Works];
 
 
 -- C2. Top 10 con distribucion por año
-SELECT 
-    NON EMPTY [Date].[Calendar Year].[Calendar Year].MEMBERS ON COLUMNS,
+SELECT
+    NON EMPTY [Fecha].[Año].[Año].MEMBERS ON COLUMNS,
     TOPCOUNT(
-        NON EMPTY [Product].[Product].[Product].MEMBERS,
+        [Producto].[Producto].[Producto].MEMBERS,
         10,
-        [Measures].[Internet Gross Profit]
+        [Measures].[Ganancia Internet]
     ) ON ROWS
-FROM [Adventure Works]
-WHERE [Measures].[Internet Gross Profit];
+FROM [Ventas Adventure Works]
+WHERE [Measures].[Ganancia Internet];
 
 
 -- C3. Top 10 con distribucion por año Y trimestre (crossjoin)
-SELECT 
-    NON EMPTY {
-        [Measures].[Internet Sales Amount],
-        [Measures].[Internet Gross Profit]
+SELECT
+    {
+        [Measures].[Ventas Internet],
+        [Measures].[Ganancia Internet]
     } ON COLUMNS,
-    NON EMPTY 
+    NON EMPTY
         TOPCOUNT(
-            [Product].[Product].[Product].MEMBERS,
+            [Producto].[Producto].[Producto].MEMBERS,
             10,
-            [Measures].[Internet Gross Profit]
+            [Measures].[Ganancia Internet]
         )
-        * [Date].[Calendar Year].[Calendar Year].MEMBERS
-        * [Date].[Calendar Quarter of Year].[Calendar Quarter of Year].MEMBERS
+        * [Fecha].[Año].[Año].MEMBERS
+        * [Fecha].[Trimestre].[Trimestre].MEMBERS
     ON ROWS
-FROM [Adventure Works]
-ORDER(
-    [Product].[Product].[Product].MEMBERS,
-    [Measures].[Internet Gross Profit],
-    BDESC
-);
+FROM [Ventas Adventure Works];
